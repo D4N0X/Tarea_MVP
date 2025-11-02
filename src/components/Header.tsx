@@ -59,11 +59,13 @@ const Header = () => {
             Registros Diarios
           </Link>
         </nav>
-
+        
+        {/*
         <Button variant="outline" size="sm">
           <User className="h-4 w-4" />
           Perfil
         </Button>
+        */}
       </div>
     </header>
   );
