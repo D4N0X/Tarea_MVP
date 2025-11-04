@@ -188,13 +188,14 @@ const Practices = () => {
       
       <main className="container py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Prácticas Disponibles</h1>
-          <p className="text-muted-foreground">Descubre y aplica a oportunidades de práctica que coincidan con tus intereses y habilidades.</p>
+          <h1 className="text-3xl font-bold mb-2 text-center">Prácticas Disponibles</h1>
+          <p className="text-muted-foreground text-center">Descubre y aplica a oportunidades de práctica que coincidan con tus intereses y habilidades.</p>
         </div>
 
-        {/* Search and Filter */}
+        {/* Búsqueda */}
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="relative flex-1 max-w-md">
+          {/* Barra de Búsqueda */}
+          <div className="relative flex-1 max-w-md border-2 border-accent/50 rounded-lg hover:bg-accent transition duration-300">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder="Buscar prácticas o empresas..."
@@ -203,15 +204,15 @@ const Practices = () => {
               className="pl-10"
             />
           </div>
-          
-          <div className="flex items-center gap-2">
-            <Filter className="h-4 w-4 text-muted-foreground" />
+          {/* Selección de filtros */}
+          <div className="flex items-center gap-2 border-2 border-accent/50 rounded-lg hover:bg-accent transition duration-300">
             <Select value={typeFilter} onValueChange={setTypeFilter}>
               <SelectTrigger className="w-[140px]">
-                <SelectValue placeholder="Filtrar por tipo" />
+                <Filter className="h-4 w-4 text-muted-foreground" />
+                <SelectValue placeholder="Filtro" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Todos los Tipos</SelectItem>
+                <SelectItem value="all" >Todos</SelectItem>
                 <SelectItem value="Full-time">Tiempo Completo</SelectItem>
                 <SelectItem value="Part-time">Medio Tiempo</SelectItem>
                 <SelectItem value="Remote">Remoto</SelectItem>
@@ -220,7 +221,7 @@ const Practices = () => {
           </div>
         </div>
 
-        {/* Results */}
+        {/* Resultados */}
         <div className="mb-4 text-sm text-muted-foreground">
           Mostrando {filteredPractices.length} de {mockPractices.length} prácticas
         </div>
