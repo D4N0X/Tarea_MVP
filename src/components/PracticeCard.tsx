@@ -10,6 +10,7 @@ interface PracticeCardProps {
   location: string;
   duration: string;
   type: "Full-time" | "Part-time" | "Remote";
+  clase: "Profesional" | "Industrial",
   description: string;
   requirements: string[];
   deadline: string;
@@ -24,20 +25,19 @@ const PracticeCard = ({
   location,
   duration,
   type,
+  clase,
   description,
   requirements,
   deadline,
   spots,
   onApply,
 }: PracticeCardProps) => {
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case "Full-time":
-        return "bg-primary text-primary-foreground";
-      case "Part-time":
-        return "bg-accent text-accent-foreground";
-      case "Remote":
-        return "bg-success text-success-foreground";
+  const getClassColor = (clase: string) => {
+    switch (clase) {
+      case "Profesional":
+        return "bg-destructive text-primary-foreground";
+      case "Industrial":
+        return "bg-warning text-accent-foreground";
       default:
         return "bg-secondary text-secondary-foreground";
     }
@@ -57,7 +57,7 @@ const PracticeCard = ({
   };
 
   return (
-    <Card className="h-full shadow-card hover:shadow-elevated transition-shadow">
+    <Card className="h-full shadow-card hover:shadow-elevated transition-shadow flex flex-col">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="space-y-1">
@@ -67,11 +67,11 @@ const PracticeCard = ({
               <span>{company}</span>
             </div>
           </div>
-          <Badge className={getTypeColor(type)}>{getTypeLabel(type)}</Badge>
+          <Badge className={getClassColor(clase)}>{clase}</Badge>
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 flex-1">
         <div className="grid grid-cols-2 gap-4 text-sm">
           <div className="flex items-center gap-2 text-muted-foreground">
             <MapPin className="h-4 w-4" />
@@ -79,7 +79,7 @@ const PracticeCard = ({
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
             <Clock className="h-4 w-4" />
-            <span>{duration}</span>
+            <span>{duration} / {getTypeLabel(type)}</span>
           </div>
         </div>
 

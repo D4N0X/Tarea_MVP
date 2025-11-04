@@ -16,6 +16,7 @@ const mockPractices = [
     location: "Nueva York, NY",
     duration: "3 meses",
     type: "Full-time" as const,
+    clase: "Profesional" as const,
     description: "Únete a nuestro equipo dinámico de desarrollo y trabaja en aplicaciones web de vanguardia usando React, Node.js y tecnologías en la nube.",
     requirements: ["Ciencias de la Computación o campo relacionado", "Conocimientos básicos de JavaScript", "Habilidades sólidas de resolución de problemas", "Experiencia en colaboración en equipo"],
     deadline: "15 dic, 2024",
@@ -28,6 +29,7 @@ const mockPractices = [
     location: "Remoto",
     duration: "4 meses",
     type: "Remote" as const,
+    clase: "Profesional" as const,
     description: "Apoya a nuestro equipo de marketing en la creación de campañas digitales atractivas, análisis de métricas de rendimiento y gestión de presencia en redes sociales.",
     requirements: ["Especialización en Marketing o Comunicaciones", "Experiencia en redes sociales", "Mentalidad analítica", "Pensamiento creativo"],
     deadline: "10 ene, 2025",
@@ -40,6 +42,7 @@ const mockPractices = [
     location: "Chicago, IL",
     duration: "6 meses",
     type: "Part-time" as const,
+    clase: "Industrial" as const,
     description: "Aprende metodologías de análisis de negocios mientras apoyas varios proyectos de clientes y desarrollas reportes analíticos.",
     requirements: ["Formación en Administración de Empresas", "Competencia en Excel", "Habilidades de comunicación", "Atención al detalle"],
     deadline: "20 dic, 2024",
@@ -52,6 +55,7 @@ const mockPractices = [
     location: "San Francisco, CA",
     duration: "4 meses",
     type: "Full-time" as const,
+    clase: "Profesional" as const,
     description: "Trabaja junto a diseñadores experimentados para crear diseños centrados en el usuario para aplicaciones móviles y web.",
     requirements: ["Formación en Diseño o HCI", "Competencia en Figma", "Portafolio requerido", "Interés en investigación de usuarios"],
     deadline: "5 ene, 2025",
@@ -64,6 +68,7 @@ const mockPractices = [
     location: "Remoto",
     duration: "5 meses",
     type: "Remote" as const,
+    clase: "Industrial" as const,
     description: "Analiza grandes conjuntos de datos, construye modelos predictivos y crea visualizaciones de datos usando Python y herramientas de aprendizaje automático.",
     requirements: ["Especialización en Estadística o Ciencia de Datos", "Programación en Python", "Conocimiento de SQL", "Conceptos básicos de aprendizaje automático"],
     deadline: "25 dic, 2024",
@@ -76,6 +81,7 @@ const mockPractices = [
     location: "Los Ángeles, CA",
     duration: "3 meses",
     type: "Part-time" as const,
+    clase: "Industrial" as const,
     description: "Crea contenido atractivo para varias plataformas digitales, colabora con editores y aprende estrategia de contenido.",
     requirements: ["Especialización en Inglés o Periodismo", "Portafolio de escritura", "Conocimiento de SEO", "Comprensión de redes sociales"],
     deadline: "15 ene, 2025",
@@ -88,6 +94,7 @@ const mockPractices = [
     location: "Washington, DC",
     duration: "6 meses",
     type: "Full-time" as const,
+    clase: "Profesional" as const,
     description: "Aprende sobre seguridad de redes, análisis de amenazas y respuesta a incidentes mientras apoyas nuestro equipo de operaciones de seguridad.",
     requirements: ["Especialización en Ciencias de la Computación o Ciberseguridad", "Fundamentos de redes", "Interés en seguridad", "Habilidades de resolución de problemas"],
     deadline: "30 dic, 2024",
@@ -100,6 +107,7 @@ const mockPractices = [
     location: "Remoto",
     duration: "4 meses",
     type: "Remote" as const,
+    clase: "Industrial" as const,
     description: "Apoya procesos de RRHH incluyendo reclutamiento, incorporación, relaciones con empleados y desarrollo de políticas.",
     requirements: ["Formación en RRHH o Psicología", "Habilidades de comunicación", "Capacidades organizacionales", "Conciencia de confidencialidad"],
     deadline: "20 ene, 2025",
@@ -112,6 +120,7 @@ const mockPractices = [
     location: "Austin, TX",
     duration: "4 meses",
     type: "Full-time" as const,
+    clase: "Industrial" as const,
     description: "Desarrolla aplicaciones móviles para plataformas iOS y Android usando React Native y herramientas de desarrollo nativo.",
     requirements: ["Experiencia en desarrollo móvil", "React Native o Swift/Kotlin", "Despliegue en app store", "Integración de APIs"],
     deadline: "18 dic, 2024",
@@ -124,6 +133,7 @@ const mockPractices = [
     location: "Boston, MA",
     duration: "5 meses",
     type: "Part-time" as const,
+    clase: "Profesional" as const,
     description: "Asiste con modelado financiero, investigación de mercado y análisis de inversiones mientras aprendes de analistas senior.",
     requirements: ["Especialización en Finanzas o Economía", "Habilidades avanzadas en Excel", "Conceptos básicos de modelado financiero", "Pensamiento analítico"],
     deadline: "8 ene, 2025",
@@ -136,6 +146,7 @@ const mockPractices = [
     location: "Seattle, WA",
     duration: "6 meses",
     type: "Full-time" as const,
+    clase: "Profesional" as const,
     description: "Trabaja con AWS, Azure y GCP para construir y mantener infraestructura en la nube para aplicaciones empresariales.",
     requirements: ["Formación en Ciencias de la Computación", "Conocimiento de plataformas en la nube", "Familiaridad con Linux", "Habilidades de scripting"],
     deadline: "22 dic, 2024",
@@ -148,6 +159,7 @@ const mockPractices = [
     location: "Remoto",
     duration: "4 meses",
     type: "Remote" as const,
+    clase: "Industrial" as const,
     description: "Aprende el ciclo de vida de desarrollo de productos, realiza investigación de usuarios y colabora con equipos de ingeniería en características de productos.",
     requirements: ["Formación en Negocios o Ingeniería", "Habilidades analíticas", "Capacidades de comunicación", "Conocimientos tecnológicos"],
     deadline: "12 ene, 2025",
@@ -165,7 +177,7 @@ const Practices = () => {
   const filteredPractices = mockPractices.filter((practice) => {
     const matchesSearch = practice.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          practice.company.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesType = typeFilter === "all" || practice.type === typeFilter;
+    const matchesType = typeFilter === "all" || practice.clase === typeFilter;
     return matchesSearch && matchesType;
   });
 
@@ -213,9 +225,8 @@ const Practices = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all" >Todos</SelectItem>
-                <SelectItem value="Full-time">Tiempo Completo</SelectItem>
-                <SelectItem value="Part-time">Medio Tiempo</SelectItem>
-                <SelectItem value="Remote">Remoto</SelectItem>
+                <SelectItem value="Industrial">Industrial</SelectItem>
+                <SelectItem value="Profesional">Profesional</SelectItem>
               </SelectContent>
             </Select>
           </div>

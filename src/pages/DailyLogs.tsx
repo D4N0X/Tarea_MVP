@@ -131,7 +131,7 @@ const DailyLogs = () => {
       <Header />
       
       <main className="container py-8">
-        <div className="mb-8">
+        <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold mb-2">Registros Diarios</h1>
           <p className="text-muted-foreground">Rastrea tus actividades diarias, aprendizajes y progreso durante tu práctica.</p>
         </div>

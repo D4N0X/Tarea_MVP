@@ -89,7 +89,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container py-8">
-        <div className="mb-8">
+        <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold mb-2">Panel de Control</h1>
           <p className="text-muted-foreground">Rastrea tus aplicaciones y gestiona tu jornada de práctica.</p>
         </div>
