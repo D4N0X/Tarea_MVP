@@ -18,7 +18,7 @@ const Header = () => {
               <path d="M280.09 278.82C257.36 278.05 236.88 270.54 222.01 251.54C204.18 228.79 209.49 199.8 233.88 184.44C262.69 166.28 306.66 173.28 328.4 199.48C351.68 227.51 339.71 264.28 303.63 275.39C299.61 276.63 295.44 277.52 291.28 278.17C287.85 278.69 284.33 278.6 280.09 278.82" fill="hsl(var(--primary))" />
             </svg>
           </div>
-          <span className="text-xl font-bold text-foreground">PortalPrácticas</span>
+          <span className="text-xl font-bold text-foreground">Sistema de Prácticas</span>
         </Link>
 
         <nav className="flex items-center gap-6">
