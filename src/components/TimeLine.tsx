@@ -1,5 +1,5 @@
 const TimeLine = ({ icon: Icon, title, isActive, onClick }) => (
-  <button onClick={onClick} className="relative space-y-2 flex flex-col items-center flex-1 group focus:outline-none" >
+  <button onClick={onClick} className="relative space-y-2 flex flex-col items-center flex-1 group focus:outline-none">
     
     {/* Nodo */}
     <div 

@@ -22,6 +22,7 @@ interface Practice {
   location: string;
   duration: string;
   type: "Full-time" | "Part-time" | "Remote";
+  clase: "Profesional" | "Industrial",
   description: string;
   requirements: string[];
   deadline: string;
@@ -93,7 +94,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
     
     // Simular envío
     setTimeout(() => {
-      // Agregar aplicación al contexto
+      {/* Resumen */}
       if (practice) {
         addApplication({
           title: practice.title,
@@ -130,14 +131,12 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
     setShowSummary(false);
   };
 
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case "Full-time":
-        return "bg-primary text-primary-foreground";
-      case "Part-time":
-        return "bg-accent text-accent-foreground";
-      case "Remote":
-        return "bg-success text-success-foreground";
+  const getClassColor = (clase: string) => {
+    switch (clase) {
+      case "Profesional":
+        return "bg-destructive text-primary-foreground";
+      case "Industrial":
+        return "bg-warning text-accent-foreground";
       default:
         return "bg-secondary text-secondary-foreground";
     }
@@ -170,7 +169,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
           </DialogDescription>
         </DialogHeader>
 
-        {/* Practice Summary */}
+        {/* Contexto de la Práctica */}
         <Card className="mb-6">
           <CardHeader>
             <div className="flex items-start justify-between">
@@ -181,7 +180,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
                   <span>{practice.company}</span>
                 </div>
               </div>
-              <Badge className={getTypeColor(practice.type)}>{getTypeLabel(practice.type)}</Badge>
+              <Badge className={getClassColor(practice.clase)}>{practice.clase}</Badge>
             </div>
           </CardHeader>
           <CardContent>
@@ -192,7 +191,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Clock className="h-4 w-4" />
-                <span>{practice.duration}</span>
+                <span>{practice.duration} / {getTypeLabel(practice.type)}</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Users className="h-4 w-4" />

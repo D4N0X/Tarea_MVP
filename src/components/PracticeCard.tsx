@@ -61,7 +61,7 @@ const PracticeCard = ({
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="space-y-1">
-            <CardTitle className="text-lg font-semibold">{title}</CardTitle>
+            <CardTitle className="text-lg font-semibold px-1">{title}</CardTitle>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Building className="h-4 w-4" />
               <span>{company}</span>
