@@ -174,9 +174,23 @@ const Practices = () => {
   const [isApplicationFormOpen, setIsApplicationFormOpen] = useState(false);
   const { toast } = useToast();
 
+  const getTypeLabel = (type: string) => {
+    switch (type) {
+      case "Full-time":
+        return "Tiempo Completo";
+      case "Part-time":
+        return "Medio Tiempo";
+      case "Remote":
+        return "Remoto";
+      default:
+        return type;
+    }
+  };
+
   const filteredPractices = mockPractices.filter((practice) => {
     const matchesSearch = practice.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         practice.company.toLowerCase().includes(searchTerm.toLowerCase());
+                         practice.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         getTypeLabel(practice.type).toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = typeFilter === "all" || practice.clase === typeFilter;
     return matchesSearch && matchesType;
   });

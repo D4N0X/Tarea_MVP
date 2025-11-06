@@ -107,7 +107,7 @@ const PracticeCard = ({
       </CardContent>
 
       <CardFooter>
-        <Button onClick={() => onApply(id)} className="w-full">
+        <Button onClick={() => onApply(id)} className="w-full inline-flex items-center justify-center h-14 px-8 text-lg font-semibold rounded-lg border-2 border-accent text-white bg-transparent hover:bg-accent hover:text-black transition duration-300">
           Aplicar Ahora
         </Button>
       </CardFooter>

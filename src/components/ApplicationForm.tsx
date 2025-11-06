@@ -211,7 +211,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
               <CardContent className="space-y-3">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-muted-foreground">Nombre Completo</p>
+                    <p className="text-sm text-muted-foreground ">Nombre Completo</p>
                     <p className="font-medium">{formData.fullName}</p>
                   </div>
                   <div>
@@ -224,7 +224,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
                   </div>
                   {formData.linkedinUrl && (
                     <div>
-                      <p className="text-sm text-muted-foreground">LinkedIn</p>
+                      <p className="text-sm text-muted-foreground">LinkedIn Opcional*</p>
                       <p className="font-medium truncate">{formData.linkedinUrl}</p>
                     </div>
                   )}
@@ -349,7 +349,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="linkedinUrl">LinkedIn</Label>
+                <Label htmlFor="linkedinUrl">LinkedIn (Opcional)</Label>
                 <Input
                   id="linkedinUrl"
                   value={formData.linkedinUrl}
@@ -396,7 +396,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
             <h3 className="text-lg font-semibold">Experiencia y Habilidades</h3>
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="experience">Experiencia Previa</Label>
+                <Label htmlFor="experience">Experiencia Previa (Opcional)</Label>
                 <Textarea
                   id="experience"
                   value={formData.experience}
@@ -406,7 +406,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="skills">Habilidades Técnicas</Label>
+                <Label htmlFor="skills">Habilidades Técnicas (Opcional)</Label>
                 <Textarea
                   id="skills"
                   value={formData.skills}
@@ -416,7 +416,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="portfolioUrl">Portfolio/GitHub</Label>
+                <Label htmlFor="portfolioUrl">Portfolio/GitHub (Opcional)</Label>
                 <Input
                   id="portfolioUrl"
                   value={formData.portfolioUrl}
@@ -444,30 +444,18 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="availability">¿Cuándo puedes empezar?</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !formData.availability && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {formData.availability ? format(formData.availability, "PPP") : <span>Selecciona una fecha</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={formData.availability}
-                      onSelect={(date) => handleInputChange("availability", date)}
-                      disabled={(date) => date < new Date()}
-                      initialFocus
-                      className={cn("p-3 pointer-events-auto")}
-                    />
-                  </PopoverContent>
-                </Popover>
+                <Input
+                  id="availability"
+                  type="date"
+                  value={formData.availability ? format(formData.availability, "yyyy-MM-dd") : ""}
+                  onChange={(e) => {
+                    const dateString = e.target.value;
+                    const dateObject = dateString ? new Date(dateString + 'T00:00:00') : undefined;
+                    handleInputChange("availability", dateObject);
+                  }}
+                  min={format(new Date(), "yyyy-MM-dd")} 
+                  className="w-full"
+                />
               </div>
             </div>
           </div>
@@ -494,7 +482,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
               <Button type="button" variant="outline" onClick={onClose}>
                 Cancelar
               </Button>
-              <Button type="submit">
+              <Button type="submit" className="inline-flex items-center justify-center h-10 px-8 text-md font-semibold rounded-lg border-2 border-accent text-white bg-transparent hover:bg-accent hover:text-black transition duration-300">
                 Revisar Aplicación
               </Button>
             </div>

@@ -161,15 +161,16 @@ const DailyLogs = () => {
         </Card>
 
         {selectedPractice && (
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-8 flex items-center justify-between ">
             <div>
               <h2 className="text-xl font-semibold mb-1">
                 {selectedPracticeInfo?.title}
               </h2>
-              <p className="text-muted-foreground">{selectedPracticeInfo?.company}</p>
+              <p className="text-muted-foreground ">{selectedPracticeInfo?.company}</p>
             </div>
-            <Button onClick={() => setShowForm(true)}>
+            <Button onClick={() => setShowForm(true)} className="inline-flex items-center justify-center h-10 px-8 text-md font-semibold rounded-lg border-2 border-accent text-white bg-transparent hover:bg-accent hover:text-black transition duration-300">
               <Plus className="h-4 w-4 mr-2" />
+
               Nueva Entrada de Registro
             </Button>
           </div>
@@ -208,12 +209,19 @@ const DailyLogs = () => {
                       onChange={(e) => setFormData({ ...formData, hours: e.target.value })}
                       placeholder="8"
                       required
+                      className="
+                        [&::-webkit-inner-spin-button]:appearance-none 
+                        [&::-webkit-outer-spin-button]:appearance-none 
+                        [&::-webkit-inner-spin-button]:m-0 
+                        [&::-webkit-outer-spin-button]:m-0 
+                        [appearance:textfield]
+                      "
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="mood">Estado de Ánimo General</Label>
+                  <Label htmlFor="mood">Estado de Ánimo General (Opcional)</Label>
                   <Select value={formData.mood} onValueChange={(value) => setFormData({ ...formData, mood: value })}>
                     <SelectTrigger>
                       <SelectValue placeholder="¿Cómo estuvo tu día?" />
@@ -264,7 +272,7 @@ const DailyLogs = () => {
                 </div>
 
                 <div className="flex gap-4">
-                  <Button type="submit">Guardar Entrada de Registro</Button>
+                  <Button type="submit" className="inline-flex items-center justify-center h-10 px-8 text-m font-semibold rounded-lg border-2 border-accent text-white bg-transparent hover:bg-accent hover:text-black transition duration-300">Guardar Entrada de Registro</Button>
                   <Button type="button" variant="outline" onClick={() => setShowForm(false)}>
                     Cancelar
                   </Button>

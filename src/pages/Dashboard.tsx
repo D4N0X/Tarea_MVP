@@ -4,20 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { 
-  FileText, 
-  Clock, 
-  CheckCircle, 
-  XCircle, 
-  AlertCircle,
-  Calendar,
-  Building,
-  MapPin,
-  ArrowUpDown,
-  Briefcase,
-  Users
-} from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription, DialogClose } from "@/components/ui/dialog";
+import { FileText, Clock, CheckCircle, XCircle, AlertCircle, Calendar, Building, MapPin, Filter, Briefcase, Users, ArrowUp, ArrowDown } from "lucide-react";
 import { useApplications } from "@/contexts/ApplicationContext";
 import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
@@ -29,27 +17,35 @@ const Dashboard = () => {
   const [sortBy, setSortBy] = useState<string>("date");
   const [selectedApplication, setSelectedApplication] = useState<string | null>(null);
   const [showDetailsDialog, setShowDetailsDialog] = useState(false);
-  const [expandedApplication, setExpandedApplication] = useState<string | null>(null);
+  const [isSortReversed, setIsSortReversed] = useState(false);
 
   const sortedApplications = useMemo(() => {
     const sorted = [...applications];
-    
     switch (sortBy) {
       case "name":
-        return sorted.sort((a, b) => a.title.localeCompare(b.title));
+        sorted.sort((a, b) => a.title.localeCompare(b.title));
+        break;
       case "date":
-        return sorted.sort((a, b) => {
+        sorted.sort((a, b) => {
           const dateA = new Date(a.appliedDate);
           const dateB = new Date(b.appliedDate);
           return dateB.getTime() - dateA.getTime();
         });
+        break;
       case "status":
         const statusOrder = { accepted: 0, under_review: 1, rejected: 2 };
-        return sorted.sort((a, b) => statusOrder[a.status] - statusOrder[b.status]);
+        sorted.sort((a, b) => statusOrder[a.status] - statusOrder[b.status]);
+        break;
       default:
-        return sorted;
+        sorted;
+        break;
     }
-  }, [applications, sortBy]);
+    if (isSortReversed) {
+      return sorted.reverse();
+    }
+
+    return sorted;
+  }, [applications, sortBy, isSortReversed]);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -76,6 +72,7 @@ const Dashboard = () => {
   const handleCancelApplication = (applicationId: string) => {
     // TODO: Implementar lógica para cancelar aplicación
     console.log("Cancelar aplicación:", applicationId);
+    setShowDetailsDialog(false);
   };
 
   const selectedPracticeDetails = useMemo(() => {
@@ -148,12 +145,12 @@ const Dashboard = () => {
         {/* Applications List */}
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle>Tus Aplicaciones</CardTitle>
-              <div className="flex items-center gap-2">
-                <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
+            <div className="flex items-center">
+              <CardTitle className="mr-auto">Tus Aplicaciones</CardTitle>
+              <div className="flex items-center gap-2 border-2 border-accent/50 rounded-lg hover:bg-accent transition duration-300">
                 <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-[180px]">
+                  <SelectTrigger className="w-[240px]">
+                    <Filter className="h-4 w-4 text-muted-foreground" />
                     <SelectValue placeholder="Ordenar por" />
                   </SelectTrigger>
                   <SelectContent>
@@ -163,6 +160,14 @@ const Dashboard = () => {
                   </SelectContent>
                 </Select>
               </div>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setIsSortReversed(prev => !prev)}
+                className="h-11 w-11 flex items-center gap-2 border-2 border-accent/50 hover:bg-accent transition duration-300 ml-2"
+              >
+                {isSortReversed ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />}
+              </Button>
             </div>
           </CardHeader>
           <CardContent>
@@ -170,8 +175,7 @@ const Dashboard = () => {
               {sortedApplications.map((application) => (
                 <div 
                   key={application.id} 
-                  className="border rounded-lg p-4 hover:shadow-card transition-shadow cursor-pointer"
-                  onClick={() => setExpandedApplication(expandedApplication === application.id ? null : application.id)}
+                  className="border rounded-lg p-4 hover:shadow-card transition-shadow cursor-pointer" 
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div>
@@ -194,7 +198,7 @@ const Dashboard = () => {
                     {getStatusBadge(application.status)}
                   </div>
                   
-                  {application.status === "under_review" && expandedApplication !== application.id && (
+                  {application.status === "under_review" && (
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-sm">
                         <span>Progreso de Aplicación</span>
@@ -204,63 +208,44 @@ const Dashboard = () => {
                     </div>
                   )}
 
-                  {expandedApplication === application.id && (
-                    <>
-                      {application.status === "under_review" && (
-                        <>
-                          <div className="space-y-2 mb-3">
-                            <div className="flex items-center justify-between text-sm">
-                              <span>Progreso de Aplicación</span>
-                              <span>{application.progress}%</span>
-                            </div>
-                            <Progress value={application.progress} className="h-2" />
-                          </div>
-                          <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
-                            <Button size="sm" onClick={() => handleViewDetails(application.id)}>
-                              Ver Detalles
-                            </Button>
-                            <Button
-                              variant="destructive"
-                              size="sm"
-                              onClick={() => handleCancelApplication(application.id)}
-                            >
-                              Cancelar Aplicación
-                            </Button>
-                          </div>
-                        </>
-                      )}
-                      
-                      {application.status === "accepted" && (
-                        <div className="flex gap-2 mt-3" onClick={(e) => e.stopPropagation()}>
-                          <Button size="sm" onClick={() => handleViewDetails(application.id)}>
-                            Ver Detalles
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => {
-                              localStorage.setItem('selectedPractice', JSON.stringify({
-                                id: application.id,
-                                title: application.title,
-                                company: application.company
-                              }));
-                              navigate("/logs");
-                            }}
-                          >
-                            Iniciar Registros Diarios
-                          </Button>
-                        </div>
-                      )}
-
-                      {application.status === "rejected" && (
-                        <div className="mt-3" onClick={(e) => e.stopPropagation()}>
-                          <Button size="sm" variant="outline" onClick={() => handleViewDetails(application.id)}>
-                            Ver Detalles
-                          </Button>
-                        </div>
-                      )}
-                    </>
-                  )}
+                  <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-dashed">
+                    {/* Botón "Ver Detalles" (para TODOS) */}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="inline-flex items-center justify-center h-9 px-8 text-md font-semibold rounded-lg border-2 border-accent text-white bg-transparent hover:bg-accent hover:text-black transition duration-300"
+                      onClick={() => handleViewDetails(application.id)}
+                    >
+                      Ver Detalles
+                    </Button>
+                
+                    {/* Botones Condicionales */}
+                    {application.status === "under_review" && (
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => handleCancelApplication(application.id)}
+                      >
+                        Cancelar Aplicación
+                      </Button>
+                    )}
+                    {application.status === "accepted" && (
+                      <Button
+                        variant="default" // 'default' para destacar
+                        size="sm"
+                        onClick={() => {
+                          localStorage.setItem('selectedPractice', JSON.stringify({
+                            id: application.id,
+                            title: application.title,
+                            company: application.company
+                          }));
+                          navigate("/logs");
+                        }}
+                      >
+                        Iniciar Registros Diarios
+                      </Button>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -347,6 +332,11 @@ const Dashboard = () => {
                 </div>
               </div>
             )}
+          <DialogFooter className="pt-4 border-t gap-2 sm:justify-start">
+              <DialogClose asChild>
+                <Button variant="ghost" size="sm">Cerrar</Button>
+              </DialogClose>
+            </DialogFooter>
           </DialogContent>
         </Dialog>
       </main>
