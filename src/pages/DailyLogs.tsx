@@ -146,7 +146,7 @@ const DailyLogs = () => {
           </CardHeader>
           <CardContent>
             <Select value={selectedPractice} onValueChange={setSelectedPractice}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full border-2 border-accent/50 rounded-lg hover:bg-accent transition duration-300">
                 <SelectValue placeholder="Elige la práctica para ver y agregar registros..." />
               </SelectTrigger>
               <SelectContent className="bg-card border-border z-50">
