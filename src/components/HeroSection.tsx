@@ -60,12 +60,18 @@ const HeroSection = () => {
           {/* Columna Izquierda */}
           <div className="w-full lg:w-1/3 flex justify-center">
             {/* Botón Preguntas frecuentes */}
-            <button
+            <a 
+                href="https://www.youtube.com/watch?v=zCjyUdq32Ic" 
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+              <button
                 className="inline-flex items-center justify-center h-14 px-8 text-lg font-semibold rounded-lg border-2 border-accent text-white bg-transparent hover:bg-accent hover:text-black transition duration-300"
               >
                 <FileQuestionIcon className="h-6 w-6 mr-2" />
-                Preguntas Frecuentes
-            </button>
+                Charla Proceso de Prácticas
+              </button>
+            </a>
           </div>
         </div>
       </div>
