@@ -35,14 +35,20 @@ const ProcessTimeline = () => {
       id: 4, 
       icon: Flag, 
       title: "Finalizando la Práctica", 
-      info: ""
+      info: "Una vez finalizado la practica, se evaluará tu desempeño por tu supervisor en la empresa. Una vez aprobado la práctica se debe esperar a que la información sea revisada por el ayudante de prácticas. Posteriormente, será el profesor encargado y luego por dirección de estudios. El tiempo de aprovación es variable y en caso de aporbar, será refeljado en el sistema SIGA."
     },
     { 
       id: 5, 
       icon: Info, 
-      title: "Convalidaciones y casos especiales", 
-      info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    },
+      title: "Convalidaciones y Casos Especiales", 
+      info: "<p>EL DI considera las siguientes situaciones excepcionales, que deberán ser aprobadas por las Jefaturas de Carrera, y recomendación del Encargado de Practicas:&nbsp;</p>"
+        + "  <p><b>1.</b> Que la PI sea desarrollada como una <u>práctica social</u>, es decir, que tiene como objetivo aportar a la comunidad, o bien, reconocer un trabajo remunerado que lo ayude a solventar su situación socioeconómica complicada.&nbsp;</p>"
+        + "  <p><b>2.</b> Que una de las practicas sea equivalente a una estadía en un Centro o proyecto de Investigación. Requiere una carta de patrocinio de un profesor del DI.&nbsp;</p>"
+        + "  <p><b>3.</b> Que la PI y PP se realicen de manera continua en una misma empresa. En este caso deberá desarrollarla en modalidad hibrida (Debido a que el tiempo de práctica será más extendido la/el estudiante debe poder continuar sus estudios) y ser por un total de <strong>648</strong>&nbsp;horas.&nbsp;&nbsp;&nbsp;</p>"
+        + "  <p><b>4.</b> Que una de las prácticas se realice el extranjero, tarea que la/el estudiante asume bajo su propia responsabilidad.&nbsp; En Chile la/el estudiante es cubierto en su práctica por un seguro simple que se da a todo alumno universitario nacional, de modo que quien la desarrolle en el extranjero debe contratar un seguro internacional ad-hoc. (Dado que el sistema de prácticas pedirá un RUT de esa empresa al momento de ingresar los datos de la organización, ingrese 11.111.111-1 )&nbsp;&nbsp;</p>"
+        + "  <p><b>5.</b> Que una de las prácticas sea equivalente al planteamiento y desarrollo de un Proyecto de Emprendimiento. Si su solicitud es aceptada deberá subir al sistema de gestión lo siguiente:&nbsp;</p><p><b>a.</b> Plan Operacional (procesos claves de Producción) y Modelo de Negocios (incluye Ingresos y Egresos)&nbsp;</p><p><b>b.</b>Bitácora detallada del trabajo realizado&nbsp;</p><p><b>c.</b>Link a página Web y RRSS del emprendimiento con indicadores de tráfico. Incluyen fotografías (de avances logrados), video (para motivar a clientes o beneficiarios a usar la solución ofrecida), y definiciones como son Misión, Visión y Valores. (Dado que el sistema exigirá un RUT de su emprendimiento al momento de ingresar los datos de la organización, ingrese 00.000.000-0)&nbsp;</p>"
+        + "  <p><b>6.</b> Que sus prácticas sean equivalentes a un trabajo profesional desarrollado en UNA empresa o institución durante al menos el triple del periodo a reconocer. Esta alternativa es para el caso de estudiantes que partieron a trabajar previamente en una empresa de la especialidad y están próximo a titularse.&nbsp;&nbsp;</p><p>Si desea convalidar, deberá ingresar la práctica en el sistema en modo de convalidación, rellenar los datos correspondientes y subir los siguienes documentos:</p><p><b>a.</b>Currículo de una página en que detalla las actividades desarrolladas&nbsp;</p><p><b>b.</b>Carta de su Jefe en la Empresa en que éste avala la calidad del aporte realizado&nbsp;</p><p><b>c.</b>RUT de la empresa&nbsp;</p><p><b>d.</b>Certificado de imposiciones previsionales o copia de las boletas con glosa adhoc de los meses a convalidar"
+      },
   ];
 
   const [activeStep, setActiveStep] = useState(steps[0]); 
@@ -65,10 +71,9 @@ const ProcessTimeline = () => {
       {/* 2. La Información Desplegada */}
       <div className="mt-6 p-4 rounded bg-black/30 border border-accent min-h-[80px]">
         <h3 className="text-xl font-bold text-accent mb-1">{activeStep.title}</h3>
-        <p 
-        className="text-white/90 whitespace-pre-wrap" 
+
+        <div className="text-white/90 whitespace-pre-wrap px-2"
         dangerouslySetInnerHTML={{ __html: activeStep.info }} />
-        
       </div>
     </div>
   );
