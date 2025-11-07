@@ -1,33 +1,34 @@
-# Welcome to your Lovable project
+# Bienvienido a Portal de Prácticas DI MVP
 
-## Project info
+Este prueba de concepto está realizado por el equipo:
 
-**URL**: https://lovable.dev/projects/08fb7169-3272-4867-809b-c396cefa290e
+- Dan Gonzalez
+- Jaime Donoso
+- Alvaro Rojas
 
-## How can I edit this code?
+## Información del Proyecto
+Este proyecto es un MVP pensado como prueba de concepto para un nuevo diseño del portal de practicas del Departamento de Informática de la Universidad Técnica Federico Santa María. Junto con las direcciones de la profesora y sus ayudantes del curso de Diseño de Interfaces Usaurias 2025-2. 
 
-There are several ways of editing your application.
+## Tecnologias usadas en el proyecto
 
-**Use Lovable**
+Este proyecto está construido usando las siguientes tecnologías:
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/08fb7169-3272-4867-809b-c396cefa290e) and start prompting.
+**Instalación y Ejecución**
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Como requerimiento, se debe tener Node.js & npm instalado.
+Para la instalación y ejecución sigue los siguientes pasos:
 
 ```sh
 # Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+git clone https://github.com/D4N0X/Tarea_MVP
 
 # Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+cd Tarea_MVP
 
 # Step 3: Install the necessary dependencies.
 npm i
@@ -36,38 +37,4 @@ npm i
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/08fb7169-3272-4867-809b-c396cefa290e) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Finalmente, con un navegador abra el link de localhost indicado en la terminal.
