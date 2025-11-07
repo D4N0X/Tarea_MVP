@@ -344,7 +344,7 @@ const ApplicationForm = ({ practice, isOpen, onClose }: ApplicationFormProps) =>
                   id="phone"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="+56 9 1234 5678"
                   required
                 />
               </div>

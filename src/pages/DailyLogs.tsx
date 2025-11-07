@@ -207,7 +207,7 @@ const DailyLogs = () => {
                       step="0.5"
                       value={formData.hours}
                       onChange={(e) => setFormData({ ...formData, hours: e.target.value })}
-                      placeholder="8"
+                      placeholder="0"
                       required
                       className="
                         [&::-webkit-inner-spin-button]:appearance-none 
