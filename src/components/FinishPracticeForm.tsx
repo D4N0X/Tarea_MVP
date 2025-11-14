@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
 
 // Definimos los props que este componente recibirá
@@ -50,9 +51,14 @@ export const FinishPracticeForm = ({
       [id]: value,
     }));
   };
+  const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    toast({
+      title: "¡Éxito!",
+      description: "Practica Finalizada, proto llegará la confirmación a tu correo.",
+    });
     // Aquí puedes agregar validación antes de enviar
     console.log("Formulario de finalización enviado:", formData);
     onSubmit(formData); // Llama a la función 'onSubmit' (que vendrá del Dashboard)
