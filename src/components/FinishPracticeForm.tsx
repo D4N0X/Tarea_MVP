@@ -80,47 +80,47 @@ export const FinishPracticeForm = ({
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="fechaInicio">Fecha de Inicio</Label>
+              <Label htmlFor="fechaInicio">Fecha de Inicio *</Label>
               <Input id="fechaInicio" type="date" value={formData.fechaInicio} onChange={handleChange} required />
             </div>
             <div>
-              <Label htmlFor="fechaFin">Fecha de Fin</Label>
+              <Label htmlFor="fechaFin">Fecha de Fin *</Label>
               <Input id="fechaFin" type="date" value={formData.fechaFin} onChange={handleChange} required />
             </div>
           </div>
           
           <div>
-            <Label htmlFor="descripcionEmpresa">Descripción general de la Empresa/Institución</Label>
+            <Label htmlFor="descripcionEmpresa">Descripción general de la Empresa/Institución *</Label>
             <Textarea id="descripcionEmpresa" value={formData.descripcionEmpresa} onChange={handleChange} placeholder="Misión, visión, tamaño, rubro..." required />
           </div>
 
           <div>
-            <Label htmlFor="descripcionUnidad">Descripción de la Unidad (cargos, lugar, etc.)</Label>
+            <Label htmlFor="descripcionUnidad">Descripción de la Unidad (cargos, lugar, etc.) *</Label>
             <Textarea id="descripcionUnidad" value={formData.descripcionUnidad} onChange={handleChange} placeholder="Departamento, equipo, ubicación física..." required />
           </div>
 
           <div>
-            <Label htmlFor="organigrama">Organigrama de la Unidad</Label>
+            <Label htmlFor="organigrama">Organigrama de la Unidad (Opcional)</Label>
             <Textarea id="organigrama" value={formData.organigrama} onChange={handleChange} placeholder="Describe la estructura jerárquica o pega un enlace a una imagen." />
           </div>
 
           <div>
-            <Label htmlFor="tareasPrincipales">Tareas principales realizadas</Label>
+            <Label htmlFor="tareasPrincipales">Tareas principales realizadas *</Label>
             <Textarea id="tareasPrincipales" value={formData.tareasPrincipales} onChange={handleChange} placeholder="Detalla las responsabilidades y proyectos..." required />
           </div>
 
           <div>
-            <Label htmlFor="plataformaTecnologica">Plataforma tecnológica utilizada</Label>
+            <Label htmlFor="plataformaTecnologica">Plataforma tecnológica utilizada (Opcional)</Label>
             <Textarea id="plataformaTecnologica" value={formData.plataformaTecnologica} onChange={handleChange} placeholder="Lenguajes, frameworks, software, metodologías..." />
           </div>
 
           <div>
-            <Label htmlFor="aportePersonal">Aporte personal realizado</Label>
+            <Label htmlFor="aportePersonal">Aporte personal realizado *</Label>
             <Textarea id="aportePersonal" value={formData.aportePersonal} onChange={handleChange} placeholder="Mejoras, ideas, proyectos propios..." required />
           </div>
 
           <div>
-            <Label htmlFor="beneficiosRecibidos">Beneficios recibidos</Label>
+            <Label htmlFor="beneficiosRecibidos">Beneficios recibidos (Opcional)</Label>
             <Textarea id="beneficiosRecibidos" value={formData.beneficiosRecibidos} onChange={handleChange} placeholder="Capacitaciones, bonos, aprendizaje clave..." />
           </div>
 
