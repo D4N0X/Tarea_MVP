@@ -10,6 +10,7 @@ import { useApplications } from "@/contexts/ApplicationContext";
 import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
 import { practices } from "@/pages/Practices/data.json";
+import { FinishPracticeForm } from "@/components/FinishPracticeForm";
 
 const Dashboard = () => {
   const { applications } = useApplications();
@@ -18,6 +19,8 @@ const Dashboard = () => {
   const [selectedApplication, setSelectedApplication] = useState<string | null>(null);
   const [showDetailsDialog, setShowDetailsDialog] = useState(false);
   const [isSortReversed, setIsSortReversed] = useState(false);
+  const [isFinishFormOpen, setIsFinishFormOpen] = useState(false);
+  const [practiceToFinish, setPracticeToFinish] = useState<typeof applications[0] | null>(null);
 
   const sortedApplications = useMemo(() => {
     const sorted = [...applications];
@@ -73,6 +76,23 @@ const Dashboard = () => {
     // TODO: Implementar lógica para cancelar aplicación
     console.log("Cancelar aplicación:", applicationId);
     setShowDetailsDialog(false);
+  };
+
+  const handleFinishApplication = (applicationId: string) => {
+    const handleOpenFinishForm = (application: typeof applications[0]) => {
+      setPracticeToFinish(application);
+      setIsFinishFormOpen(true);
+    };
+  };
+
+  const handleCloseFinishForm = () => {
+    setIsFinishFormOpen(false);
+    setPracticeToFinish(null);
+  };
+
+  const handleOpenFinishForm = (application: typeof applications[0]) => {
+    setPracticeToFinish(application);
+    setIsFinishFormOpen(true);
   };
 
   const selectedPracticeDetails = useMemo(() => {
@@ -231,7 +251,7 @@ const Dashboard = () => {
                     )}
                     {application.status === "accepted" && (
                       <Button
-                        variant="default" // 'default' para destacar
+                        variant="default"
                         size="sm"
                         onClick={() => {
                           localStorage.setItem('selectedPractice', JSON.stringify({
@@ -243,6 +263,15 @@ const Dashboard = () => {
                         }}
                       >
                         Iniciar Registros Diarios
+                      </Button>
+                    )}
+                    {application.status === "accepted" && (
+                      <Button
+                        variant="default"
+                        size="sm"
+                        onClick={() => handleOpenFinishForm(application)}
+                      >
+                        Finalizar Práctica
                       </Button>
                     )}
                   </div>
@@ -339,6 +368,12 @@ const Dashboard = () => {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+        <FinishPracticeForm
+        isOpen={isFinishFormOpen}
+          onClose={handleCloseFinishForm}
+          onSubmit={handleFinishApplication}
+          practiceTitle={practiceToFinish?.title || ""}
+        />
       </main>
     </div>
   );
